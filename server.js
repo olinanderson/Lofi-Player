@@ -12,7 +12,6 @@ const chalk = require("chalk"),
 const PORT = process.env.PORT || 5000;
 
 var fileArray = [];
-var files;
 
 const getFileNames = async () => {
   fs.readdir("./client/public/uploads", function (err, files) {
@@ -65,6 +64,12 @@ app.get("/api/audio", async (req, res) => {
   }
 
   return res.json(fileArray);
+});
+
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 // Firing up the server on selected port
