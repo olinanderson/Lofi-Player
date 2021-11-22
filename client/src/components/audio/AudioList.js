@@ -54,6 +54,11 @@ const AudioList = ({
               setTrackIndex(i);
             }
           }
+          if (isPlaying) {
+            setIsPlaying(false);
+          } else {
+            setIsPlaying(true);
+          }
         } else {
           setTrackIndex(img - 1);
         }
