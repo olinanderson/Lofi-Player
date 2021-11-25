@@ -166,11 +166,11 @@ const AudioPlayer = ({ files, shuffledFiles, shuffle, playingParams }) => {
   }
 
   // Canvas heights and widths
-  const { height, width } = useWindowDimensions();
-  const canvasHeight = 20; // 10vh
+  const { width } = useWindowDimensions();
+  // const canvasHeight = 20; // 10vh
   const canvasWidth = 100; // 40vw
-  const capHeight = 0.3; // vh
-  const capWidth = 0.2; // vw
+  // const capHeight = 0.3; // vh
+  // const capWidth = 0.2; // vw
 
   return (
     <div className="player">
@@ -178,7 +178,8 @@ const AudioPlayer = ({ files, shuffledFiles, shuffle, playingParams }) => {
         <audio ref={audioRef} src={audioSrc} id={trackIndex}></audio>
         <AudioSpectrum
           id="audio-canvas"
-          height={(canvasHeight * height) / 100}
+          height={300}
+          // height={(canvasHeight * height) / 100}
           width={(canvasWidth * width) / 100}
           audioId={trackIndex.toString()}
           capColor={"black"}
