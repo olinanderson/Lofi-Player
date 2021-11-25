@@ -73,30 +73,6 @@ const AudioPlayer = ({ files, shuffledFiles, shuffle, playingParams }) => {
 
   audioRef.current.id = trackIndex.toString();
 
-  // // On video playing toggle values
-  // audioRef.current.onplaying = function () {
-  //   setIsPlaying(true);
-  // };
-
-  // // On video pause toggle values
-  // audioRef.current.onpause = function () {
-  //   setIsPlaying(false);
-  // };
-
-  // // Play video function
-  // function playAudio() {
-  //   if (audioRef.current.paused && !isPlaying) {
-  //     audioRef.current.play();
-  //   }
-  // }
-
-  // // Pause video function
-  // function pauseAudio() {
-  //   if (!audioRef.current.paused && isPlaying) {
-  //     audioRef.current.pause();
-  //   }
-  // }
-
   // Destructure for conciseness
   const { duration } = audioRef.current;
 
@@ -206,9 +182,11 @@ const AudioPlayer = ({ files, shuffledFiles, shuffle, playingParams }) => {
           width={(canvasWidth * width) / 100}
           audioId={trackIndex.toString()}
           capColor={"black"}
-          capHeight={(capHeight * height) / 100}
-          meterWidth={(capWidth * width) / 100}
-          meterCount={512}
+          capHeight={4}
+          // capHeight={(capHeight * height) / 100}
+          meterWidth={4}
+          // meterWidth={(capWidth * width) / 100}
+          meterCount={Math.round((canvasWidth * width) / 800) + 50}
           meterColor={[
             { stop: 0, color: "rgb(214, 54, 54)" },
             { stop: 0.5, color: "black" },
