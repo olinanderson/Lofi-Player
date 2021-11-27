@@ -150,11 +150,15 @@ canvas,
 }
 
 .bar__time {
+  display: flex;
+  align-items: center;
   color: var(--darkThemeColor);
   margin: auto 10px;
   position: absolute;
   right: 20px;
-  bottom: 25px;
+  bottom: 0px;
+  height: 70px;
+  padding: 10px;
 }
 
 .player__button {
@@ -267,6 +271,97 @@ audio {
 
 .bottom-space {
   height: 200px;
+}
+
+/* RANGE INPUT --------------------------------------------- */
+
+input[type="range"] {
+  position: absolute;
+  right: 230px;
+  -webkit-appearance: none;
+  margin-right: 30px;
+  width: 150px;
+  height: 7px;
+  background: var(--lightThemeColor);
+  border-radius: 5px;
+  background-image: linear-gradient(
+    var(--darkThemeColor),
+    var(--darkThemeColor)
+  );
+  background-size: 70% 100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* Input Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: var(--darkThemeColor);
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: var(--darkThemeColor);
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-ms-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: var(--darkThemeColor);
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #460d0d;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #460d0d;
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-thumb:hover {
+  background: #460d0d;
+  cursor: pointer;
+}
+
+/* Input Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type="range"]::-moz-range-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type="range"]::-ms-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
 }
 
 /* Mobile Responsiveness */

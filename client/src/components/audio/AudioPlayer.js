@@ -8,10 +8,10 @@ import store from "../../store";
 
 import Bar from "./Bar";
 import Shuffle from "./Shuffle";
+import Mute from "./Mute";
+import AudioControls from "./AudioControls";
 
 import { setShuffle } from "../../actions/audio";
-
-import AudioControls from "./AudioControls";
 
 const getWindowDimensions = () => {
   const { innerWidth: width, innerHeight: height } = window;
@@ -60,6 +60,8 @@ const AudioPlayer = ({ files, shuffledFiles, shuffle, playingParams }) => {
 
   // States
   const [trackProgress, setTrackProgress] = useState(0);
+  const [volume, setVolume] = useState(1);
+  const [muted, setMuted] = useState(false);
 
   const { fileName, img } = currentPlayList[trackIndex];
 
@@ -150,7 +152,21 @@ const AudioPlayer = ({ files, shuffledFiles, shuffle, playingParams }) => {
     };
   }, [trackIndex, shuffledFiles, setIsPlaying, startTimer]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    audioRef.current.volume = volume;
+
+    document.getElementById("volume-slider").style.backgroundSize =
+      volume * 100 + "% 100%";
+
+    if (muted) {
+      audioRef.current.muted = true;
+      document.getElementById("volume-slider").value = 0;
+      document.getElementById("volume-slider").style.backgroundSize = "0% 100%";
+    } else {
+      audioRef.current.muted = false;
+      document.getElementById("volume-slider").value = volume;
+    }
+  }, [volume, muted]);
 
   let songName = currentPlayList[trackIndex].fileName.replace(/_/g, " ");
   let songArtist;
@@ -219,6 +235,18 @@ const AudioPlayer = ({ files, shuffledFiles, shuffle, playingParams }) => {
             />
           </div>
           <div className="bar__time">
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              onChange={(event) => {
+                setVolume(event.target.valueAsNumber);
+                setMuted(false);
+              }}
+              id="volume-slider"
+            />
+            <Mute muted={muted} setMuted={setMuted} volume={volume} />
             <Shuffle
               handleClick={() => {
                 store.dispatch(setShuffle(!shuffle, currentPlayList));
