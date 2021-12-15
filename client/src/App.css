@@ -277,7 +277,7 @@ audio {
 
 input[type="range"] {
   position: absolute;
-  right: 230px;
+  right: 200px;
   -webkit-appearance: none;
   margin-right: 30px;
   width: 150px;
